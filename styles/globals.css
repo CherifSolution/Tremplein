@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #__next {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-paper-bg text-ink;
+  background-image: theme('backgroundImage.grain');
+  font-family: 'Work Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: theme('colors.ink');
+}
+
+a {
+  color: inherit;
+}
+
+/* --- Système "Le Dossier" --- */
+
+.eyebrow-mono {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: theme('colors.navy.DEFAULT');
+}
+
+.paper-card {
+  @apply bg-paper-card border border-paper-line/70;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(36,33,27,0.04), 0 8px 20px -12px rgba(36,33,27,0.18);
+}
+
+.field-line {
+  @apply w-full bg-transparent text-sm text-ink outline-none;
+  border: none;
+  border-bottom: 1.5px dashed theme('colors.paper.line');
+  padding: 0.4rem 0.1rem;
+  transition: border-color 0.15s ease;
+}
+.field-line:focus {
+  border-bottom-color: theme('colors.navy.DEFAULT');
+  border-bottom-style: solid;
+}
+.field-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: theme('colors.navy.light');
+}
+
+.dossier-btn {
+  @apply inline-flex items-center justify-center gap-2 text-sm font-semibold text-paper-card;
+  background: theme('colors.navy.DEFAULT');
+  border-radius: 4px;
+  padding: 0.65rem 1.4rem;
+  letter-spacing: 0.02em;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.dossier-btn:hover:not(:disabled) {
+  background: theme('colors.navy.light');
+}
+.dossier-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.dossier-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dossier-btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 text-sm font-semibold;
+  background: transparent;
+  color: theme('colors.navy.DEFAULT');
+  border: 1.5px solid theme('colors.paper.line');
+  border-radius: 4px;
+  padding: 0.6rem 1.3rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.dossier-btn-ghost:hover:not(:disabled) {
+  border-color: theme('colors.navy.DEFAULT');
+}
+.dossier-btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Tampon encreur : élément signature */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: theme('colors.stamp');
+  border: 2px solid theme('colors.stamp');
+  border-radius: 3px;
+  padding: 0.35rem 0.75rem;
+  transform: rotate(-2.5deg);
+  position: relative;
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+}
+.stamp::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid theme('colors.stamp');
+  border-radius: 2px;
+  opacity: 0.55;
+}
+.stamp-ledger {
+  color: theme('colors.ledger');
+  border-color: theme('colors.ledger');
+}
+.stamp-ledger::before {
+  border-color: theme('colors.ledger');
+}
+
+/* Onglets de chemise cartonnée */
+.folder-tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+  padding: 0.7rem 1.15rem 0.55rem;
+  background: theme('colors.manila.DEFAULT');
+  color: theme('colors.navy.DEFAULT');
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+.folder-tab:hover {
+  background: theme('colors.manila.light');
+}
+.folder-tab.is-active {
+  background: theme('colors.paper.card');
+  color: theme('colors.navy.DEFAULT');
+  font-weight: 600;
+  transform: translateY(-3px);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -3px 0 theme('colors.navy.DEFAULT') inset;
+}

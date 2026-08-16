@@ -14,7 +14,7 @@ type GenerateRequestBody = {
   context?: Record<string, unknown>
 }
 
-const MODEL_NAME = 'gemini-2.5-flash'
+const MODEL_NAME = 'gemini-3.5-flash'
 
 const sendJsonError = (res: NextApiResponse, status: number, message: string, details?: unknown) => {
   const payload: Record<string, unknown> = { error: message }
